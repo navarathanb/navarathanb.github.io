@@ -33,7 +33,7 @@
 		function insertRecords(data){
 			records = '';
 			for(i=0; i< data.length; i++){
-				records += '<tr><td>'+data[i].name+'</td><td>'+data[i].email+'</td><td>'+data[i].mobile+'</td><td>'+data[i].id+'</td></tr>'; 
+				records += '<tr><td>'+data[i].name+'</td><td>'+data[i].email+'</td><td>'+data[i].mobile+'</td><td>'+data[i].id+'</td><td><input type="submit" value="edit" onclick="edit('+i+')"></td><td><input type="submit" value="delete" onclick="delete()"></td></tr>'; 
 			}
 			document.getElementById("table").innerHTML = records;
 		}
