@@ -1,0 +1,42 @@
+<html>
+	<head></head>
+	<body>
+		Name : <input type="text" id="name"><br>
+		Email : <input type="text" id="name"><br>
+		Mobile : <input type="text" id="name"><br>
+		ID : <input type="text" id="name"><br>
+		<input type="submit" value="insert" onclick="insert()">
+		<input type="submit" value="update" onclick="delete()">
+		<div>
+			<table id="table">
+				<tr><td>name</td><td>email</td><td>mobile</td><td>id</td></tr>
+			</table>
+		</div>
+	</body>
+	<script>
+		var json,emp, records;
+		if(window.XMLHttpRequest){
+			json = new XMLHttpRequest();
+		}
+		else{
+			json = new ActiveXObject("MICROSOFT.XMLHTTP");
+		}
+		json.onreadystatechange = function(){
+			if(json.readyState == 4 && json.status ==  200){
+				emp = JSON.parse(responseText);
+				insertRecords(emp);
+			}
+		}
+		json.open("get","jsondata.txt",true);
+		json.send();
+		
+		function insertRecords(data){
+			records = '';
+			for(i=0; i< data.length; i++){
+				records += '<tr><td>'+data[i].name+'</td><td>'+data[i].email+'</td><td>'+data[i].mobile+'</td><td>'+data[i].id+'</td></tr>'; 
+			}
+			document.getElementById("table").innerHTML = records;
+		}
+		
+	</script>
+</html>
