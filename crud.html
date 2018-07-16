@@ -6,7 +6,7 @@
 		Mobile : <input type="text" id="mobile"><br>
 		ID : <input type="text" id="id"><br>
 		<input type="submit" value="insert" onclick="insert()">
-		<input type="submit" value="update" onclick="delete()">
+		<input type="submit" value="update" id="update">
 		<div>
 			<table id="table">
 				<tr><td>name</td><td>email</td><td>mobile</td><td>id</td><td>edit</td><td>delete</td></tr>
@@ -33,7 +33,7 @@
 		function displayRecords(data){
 			records = '';
 			for(i=0; i< data.length; i++){
-				records += '<tr><td>'+data[i].name+'</td><td>'+data[i].email+'</td><td>'+data[i].mobile+'</td><td>'+data[i].id+'</td><td><input type="submit" value="edit" onclick="edit('+i+')"></td><td><input type="submit" value="delete" onclick="delete()"></td></tr>'; 
+				records += '<tr><td>'+data[i].name+'</td><td>'+data[i].email+'</td><td>'+data[i].mobile+'</td><td>'+data[i].id+'</td><td><input type="submit" value="edit" onclick="edit('+i+')"></td><td><input type="submit" value="delete" onclick="delete('+i+')"></td></tr>'; 
 			}
 			document.getElementById("table").innerHTML = records;
 		}
@@ -44,6 +44,28 @@
 			var id = document.getElementById("id").value;
 			emp.push({"name":name,"email":email,"mobile":mobile,"id":id});
 			displayRecords(emp);
+		}
+		function delete(ind){
+			emp.splice(ind,1);
+			displayRecords(emp);
+		}
+		function edit(ind){
+			var name = emp[ind].name;
+			var email = emp[ind].email;
+			var mobile = emp[ind].mobile;
+			var id = emp[ind].id;
+			document.getElementById("name").value = name;
+			document.getElementById("email").value = email;
+			document.getElementById("mobile").value = mobile;
+			document.getElementById("id").value = id;
+			
+			document.getElementById("update").onclick = function(){
+				var name = document.getElementById("name").value;
+				var email = document.getElementById("email").value;
+				var mobile = document.getElementById("mobile").value;
+				var id = document.getElementById("id").value;
+				emp.splice(ind,1,{"name":name,"email":email,"mobile":mobile,"id":id});
+			}
 		}
 		
 	</script>
