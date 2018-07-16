@@ -23,7 +23,7 @@
 		}
 		json.onreadystatechange = function(){
 			if(json.readyState == 4 && json.status ==  200){
-				emp = JSON.parse(responseText);
+				emp = JSON.parse(json.responseText);
 				insertRecords(emp);
 			}
 		}
